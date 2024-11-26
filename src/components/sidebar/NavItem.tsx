@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Pin, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,7 @@ export const NavItem = ({
 }) => {
   const location = useLocation();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const navigate = useNavigate();
 
   const handlePin = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,6 +42,15 @@ export const NavItem = ({
 
   const handleClick = () => {
     onSelect?.();
+  };
+
+  const handleConfirmDelete = () => {
+    const isCurrentNote = location.pathname === path;
+    onDelete?.();
+    setShowDeleteDialog(false);
+    if (isCurrentNote) {
+      navigate("/");
+    }
   };
 
   return (
@@ -84,10 +94,7 @@ export const NavItem = ({
       <DeleteNoteDialog
         isOpen={showDeleteDialog}
         onClose={() => setShowDeleteDialog(false)}
-        onConfirm={() => {
-          onDelete?.();
-          setShowDeleteDialog(false);
-        }}
+        onConfirm={handleConfirmDelete}
         noteTitle={label}
       />
     </>

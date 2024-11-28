@@ -55,6 +55,7 @@
     "@tauri-apps/plugin-window": "2.0.0-alpha.0",
     "@types/uuid": "^9.0.8",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "axios": "^1.7.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",

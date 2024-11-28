@@ -1,26 +1,49 @@
-import { Bot, MessageCircle, X, Pencil, LightbulbIcon, LayoutTemplate, Paperclip, AtSign, ArrowUp, Speech, Coffee, Book, Code, FileText, Mail, Settings, Search } from "lucide-react";
+import {
+  Bot,
+  MessageCircle,
+  X,
+  Pencil,
+  LightbulbIcon,
+  LayoutTemplate,
+  Paperclip,
+  AtSign,
+  ArrowUp,
+  Speech,
+  Coffee,
+  Book,
+  Code,
+  FileText,
+  Mail,
+  Settings,
+  Search,
+} from "lucide-react";
 import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "@/lib/utils";
 import useAIStore from "@/store/useAIStore";
+import { getCharacters } from "@/lib/llm_invoker";
 
 const AIAssistant = () => {
   const { isOpen, toggleOpen } = useAIStore();
-
+  //getCharacters();
   const suggestedActions = [
     { icon: <Pencil className="w-4 h-4" />, text: "Draft anything" },
     { icon: <LightbulbIcon className="w-4 h-4" />, text: "Brainstorm ideas" },
     { icon: <LayoutTemplate className="w-4 h-4" />, text: "Browse templates" },
     { icon: <Speech className="w-4 h-4" />, text: "Start a conversation" },
     { icon: <Coffee className="w-4 h-4" />, text: "Get recommendations" },
-    { icon: <Book className="w-4 h-4" />, text: "Learn something new" }
+    { icon: <Book className="w-4 h-4" />, text: "Learn something new" },
   ];
 
   const draftActions = [
     { icon: <FileText className="w-4 h-4" />, text: "Draft a document" },
     { icon: <Mail className="w-4 h-4" />, text: "Write an email" },
     { icon: <Code className="w-4 h-4" />, text: "Generate code" },
-    { icon: <Settings className="w-4 h-4 text-gray-400" />, text: "Configure settings", disabled: true }
+    {
+      icon: <Settings className="w-4 h-4 text-gray-400" />,
+      text: "Configure settings",
+      disabled: true,
+    },
   ];
 
   return (
@@ -46,7 +69,9 @@ const AIAssistant = () => {
 
           <ScrollArea className="h-[400px]">
             <div className="px-4 py-2">
-              <div className="text-sm text-muted-foreground mb-2">Suggested</div>
+              <div className="text-sm text-muted-foreground mb-2">
+                Suggested
+              </div>
               <div className="space-y-2">
                 {suggestedActions.map((action, index) => (
                   <button
@@ -68,8 +93,8 @@ const AIAssistant = () => {
                     key={index}
                     className={cn(
                       "w-full flex items-center gap-3 p-3 rounded-md transition-colors text-left",
-                      action.disabled 
-                        ? "text-muted-foreground cursor-not-allowed" 
+                      action.disabled
+                        ? "text-muted-foreground cursor-not-allowed"
                         : "hover:bg-accent text-foreground"
                     )}
                     disabled={action.disabled}

@@ -3,7 +3,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Index = () => {
   return (
-    <div className="max-w-4xl mx-auto h-[600px]">
+    <div className="max-w-4xl mx-auto editor">
       <ScrollArea className="h-full w-full">
         <Editor />
       </ScrollArea>

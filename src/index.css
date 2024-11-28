@@ -66,3 +66,7 @@
     animation: fade-out 0.3s ease-out;
   }
 }
+
+.editor {
+  height: 100vh;
+}

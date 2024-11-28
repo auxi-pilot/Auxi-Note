@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { getNote, updateNote } from "@/models/notes";
 import WelcomeHero from "./WelcomeHero";
+import { CustomFormattingToolbar, CustomFormattingToolbarController } from "./editor/FormattingToolbar";
 
 const darkTheme = {
   colors: {
@@ -39,7 +40,7 @@ const Editor = () => {
 
   const blockNoteTheme = customTheme[theme];
 
-  const initializeNote = async (currentNoteId) => {
+  const initializeNote = async (currentNoteId: string) => {
     if (!currentNoteId) return;
     
     const note = getNote(currentNoteId);
@@ -57,7 +58,9 @@ const Editor = () => {
   }, [initialContent]);
 
   useEffect(() => {
-    initializeNote(noteId);
+    if(noteId){
+      initializeNote(noteId);
+    }
   }, [noteId]);
 
   if (!noteId) {
@@ -69,7 +72,9 @@ const Editor = () => {
   }
 
   return (
-    <BlockNoteView editor={editor} theme={blockNoteTheme} onChange={() => {updateNote(noteId, editor.document);}}/>
+    <BlockNoteView editor={editor} theme={blockNoteTheme} onChange={() => {updateNote(noteId, editor.document);}} formattingToolbar={false}>
+    <CustomFormattingToolbarController/>
+    </BlockNoteView>
   );
 };
 

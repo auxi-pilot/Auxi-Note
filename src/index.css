@@ -52,8 +52,11 @@
     @apply bg-background text-foreground antialiased;
   }
 
-  .glass {
+  /* .glass {
     @apply bg-background/80 backdrop-blur-lg border border-border/50 shadow-lg;
+  } */
+  .bg-popover {
+    background-color: hsl(var(--background)) !important;
   }
 }
 

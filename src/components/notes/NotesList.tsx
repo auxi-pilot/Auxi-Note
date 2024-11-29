@@ -11,6 +11,7 @@ interface NotesListProps {
   onShowMore?: () => void;
   onSelect?: () => void;
   totalNotes?: number;
+  showCreateNoteButton?: boolean;
 }
 
 export const NotesList = ({
@@ -22,7 +23,9 @@ export const NotesList = ({
   onShowMore,
   onSelect,
   totalNotes = notes.length,
+  showCreateNoteButton = false,
 }: NotesListProps) => {
+  console.log(showCreateNoteButton);
   return (
     <div className="mt-1 space-y-1">
       {notes.map((note) => (
@@ -47,7 +50,7 @@ export const NotesList = ({
           <span>More Notes</span>
         </button>
       )}
-      {!isCollapsed && (
+      {!isCollapsed && showCreateNoteButton && (
         <button
           onClick={onNewNote}
           className="flex items-center space-x-2 w-full px-2 py-1.5 rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"

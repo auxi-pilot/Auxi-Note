@@ -162,6 +162,7 @@ const Sidebar = () => {
               onNewNote={handleNewNote}
               onShowMore={() => setShowMorePanel(!showMorePanel)}
               onSelect={() => setShowMorePanel(false)}
+              showCreateNoteButton={true}
             />
           </div>
         </nav>

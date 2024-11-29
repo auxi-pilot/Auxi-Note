@@ -144,9 +144,9 @@ export async function setToneToText(
   toneType: string
 ): Promise<string> {
   const prompt =
-    `You are helping to changing tone of a text.  You will set the tone to ${toneType}` +
-    `You will return a output after changing the tone of the text. Make sure you don't lose the context. And do not change ` +
-    `a lot of word or sentences. Also explain what you have changed and why. \n\n ` +
+    `You are helping to changing tone of a text. You will set the tone to ${toneType}.` +
+    `You will show the new text with the tone ${toneType}. Then you will output the original text as well.` +
+    `You will then explain what changes you have made and why.\n\n` +
     selectedText;
   try {
     const response = await client.createChatCompletion<string>([

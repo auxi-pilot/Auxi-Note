@@ -37,7 +37,7 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDREQUE4QTUxMzEwRjAwRUUKUldUdUFBOHhVWXFxVFQ4ditFbmJsS0xlbmpub09zdEQ0bzEzWVZScE9TdlZRb2tid2VFT2FoZ2EK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEEyQzZDMDhGQ0Q0NTgyMDAKUldRQWdrWE5qOERHb3EzaEdoOGsvME56N1Jna1JQVzQyVTBHRjUrOFpkNWk2L0ZnRUFLQjRoQ0QK",
       "endpoints": [
         "https://github.com/auxi-pilot/AuxiNote/releases/latest/download/latest.json"
       ]

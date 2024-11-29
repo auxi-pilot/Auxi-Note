@@ -20,7 +20,7 @@ const Layout = () => {
           <Outlet />
         </div>
       </main>
-      <AIAssistant />
+      {/* <AIAssistant /> */}
     </div>
   );
 };

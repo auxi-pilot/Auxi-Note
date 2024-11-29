@@ -56,7 +56,7 @@ export const NavItem = ({
   return (
     <>
       <Link
-        to={path}
+        to={path ?? "#"}
         onClick={handleClick}
         className={cn(
           "group flex items-center justify-between px-2 py-1.5 rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors",

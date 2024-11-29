@@ -25,7 +25,7 @@ export const getCurrentTheme = (): "light" | "dark" => {
       value: "light",
     });
   }
-  return themeSetting.value == "light" ? "light" : "dark";
+  return themeSetting?.value == "light" ? "light" : "dark";
 };
 
 export const setCurrentTheme = (newTheme: string) => {

@@ -64,10 +64,17 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "spin-reverse": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(-360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "slide-in": "slide-in 0.3s ease-out",
+        "slide-out": "slide-out 0.3s ease-out",
+        reverse: "spin-reverse 2s linear infinite",
       },
     },
   },
@@ -75,4 +82,4 @@ module.exports = {
     require("tailwindcss-animate"),
     require("tailwind-scrollbar")({ nocompatible: true }),
   ],
-}
+};

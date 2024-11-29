@@ -9,7 +9,6 @@ const WelcomeHero = () => {
 
   const handleNewNote = () => {
     const newNoteId = createNewNote();
-    console.log(newNoteId);
     navigate(`/note/${newNoteId}`);
   };
 

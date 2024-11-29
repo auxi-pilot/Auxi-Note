@@ -17,6 +17,12 @@ import { useMemo, useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { Bot, ChevronDown } from "lucide-react";
+import useAIStore from "@/store/useAIStore";
+import {
+  proofread,
+  setToneToText,
+  summarizeContentPrompt,
+} from "@/lib/llm_invoker";
 
 export const AIAssistantFormattingTool = () => {
   const editor = useBlockNoteEditor<
@@ -29,6 +35,8 @@ export const AIAssistantFormattingTool = () => {
 
   const [block, setBlock] = useState(editor.getTextCursorPosition().block);
 
+  const { openOutput, setOutputLoading } = useAIStore();
+
   useEditorContentOrSelectionChange(() => {
     setBlock(editor.getTextCursorPosition().block);
   }, editor);
@@ -36,6 +44,35 @@ export const AIAssistantFormattingTool = () => {
   if (!editor.isEditable) {
     return null;
   }
+
+  const handleAIAssistantSummarize = async (selectedText: string) => {
+    // Example of triggering the output modal with some sample text
+    openOutput("");
+    setOutputLoading(true);
+    const output = await summarizeContentPrompt(selectedText);
+    setOutputLoading(false);
+    openOutput(output);
+  };
+
+  const handleAIAssistantProofread = async (selectedText: string) => {
+    // Example of triggering the output modal with some sample text
+    openOutput("");
+    setOutputLoading(true);
+    const output = await proofread(selectedText);
+    setOutputLoading(false);
+    openOutput(output);
+  };
+
+  const handleAIAssistantSetTone = async (
+    selectedText: string,
+    toneType: string
+  ) => {
+    openOutput("");
+    setOutputLoading(true);
+    const output = await setToneToText(selectedText, toneType);
+    setOutputLoading(false);
+    openOutput(output);
+  };
 
   return (
     <Popover modal={true}>
@@ -53,7 +90,7 @@ export const AIAssistantFormattingTool = () => {
         <Button
           variant="outline"
           onClick={() => {
-            // Handle button click
+            handleAIAssistantSummarize(editor.getSelectedText());
           }}
           className="w-full"
         >
@@ -62,7 +99,7 @@ export const AIAssistantFormattingTool = () => {
         <Button
           variant="outline"
           onClick={() => {
-            // Handle button click
+            handleAIAssistantProofread(editor.getSelectedText());
           }}
           className="w-full"
         >
@@ -71,7 +108,7 @@ export const AIAssistantFormattingTool = () => {
         <Button
           variant="outline"
           onClick={() => {
-            // Handle button click
+            handleAIAssistantSetTone(editor.getSelectedText(), "professional");
           }}
           className="w-full"
         >

@@ -50,8 +50,6 @@ export async function getCharacters() {
         temperature: 0.7,
       }
     );
-
-    console.log(characters);
   } catch (error) {
     console.error("Error:", error);
   }
@@ -66,9 +64,100 @@ export async function getFreeformResponse(prompt: string) {
         content: prompt,
       },
     ]);
-
-    console.log(response);
   } catch (error) {
     console.error("Error:", error);
+  }
+}
+
+export async function summarizeContentPrompt(
+  selectedText: string
+): Promise<string> {
+  if (selectedText.length < 30) {
+    return "Content length is too short to summarize";
+  }
+  const prompt =
+    `Summarize the content provided below, make content as short as possible but don't lose the content ` +
+    `context. Reply in English if the input is in english, otherwise provide response in the same language as input. ` +
+    `Do not return the language name. If the content to summarize is too short, then reply by saying that the content ` +
+    `length is too short to summarize.\n\n` +
+    selectedText;
+  try {
+    const response = await client.createChatCompletion<string>([
+      {
+        role: "user",
+        content: prompt,
+      },
+    ]);
+    return response;
+  } catch (error) {
+    console.error("Error:", error);
+    return "Couldn't invoke LLM";
+  }
+}
+
+export async function gatherKeyPoints(selectedText: string): Promise<string> {
+  if (selectedText.length < 30) {
+    return "Content length is too short to gather key points";
+  }
+  const prompt =
+    `Gather key points from the content provided below, use bullet points for each key points. ` +
+    `Reply in English if the input is in english, otherwise provide response in the same language as input. ` +
+    `Do not return the language name. If the content too short, then reply by saying that the content ` +
+    `length is too short to gather key points.\n\n` +
+    selectedText;
+  try {
+    const response = await client.createChatCompletion<string>([
+      {
+        role: "user",
+        content: prompt,
+      },
+    ]);
+    return response;
+  } catch (error) {
+    console.error("Error:", error);
+    return "Couldn't invoke LLM";
+  }
+}
+
+export async function proofread(selectedText: string): Promise<string> {
+  const prompt =
+    `You are a proof reader. You will look for grammatical mistakes, spelling mistakes, punctuation misktakes. ` +
+    `You will return a output after fixing all the issues. Make sure you don't lose the context. And do not change ` +
+    `a lot of word or sentences. Keep the content tone as it is \n\n ` +
+    selectedText;
+  try {
+    const response = await client.createChatCompletion<string>([
+      {
+        role: "user",
+        content: prompt,
+      },
+    ]);
+    return response;
+  } catch (error) {
+    console.error("Error:", error);
+    return "Couldn't invoke LLM";
+  }
+}
+
+export async function setToneToText(
+  selectedText: string,
+  toneType: string
+): Promise<string> {
+  const prompt =
+    `You are helping to changing tone of a text.  You will set the tone to ${toneType}` +
+    `You will return a output after changing the tone of the text. Make sure you don't lose the context. And do not change ` +
+    `a lot of word or sentences. Also explain what you have changed and why. \n\n ` +
+    selectedText;
+  try {
+    const response = await client.createChatCompletion<string>([
+      {
+        role: "user",
+        content: prompt,
+      },
+    ]);
+    return response;
+  } catch (error) {
+    console.error("Error:", error);
+    return "Couldn't invoke LLM";
   }
 }

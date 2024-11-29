@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Auxi Note",
+  "productName": "Auxi-Note",
   "version": "0.1.0",
   "identifier": "com.auxinote.app",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Auxi Note",
+        "title": "Auxi-Note",
         "width": 1000,
         "height": 800,
         "minWidth": 600,
@@ -39,7 +39,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEEyQzZDMDhGQ0Q0NTgyMDAKUldRQWdrWE5qOERHb3EzaEdoOGsvME56N1Jna1JQVzQyVTBHRjUrOFpkNWk2L0ZnRUFLQjRoQ0QK",
       "endpoints": [
-        "https://github.com/auxi-pilot/AuxiNote/releases/latest/download/latest.json"
+        "https://github.com/auxi-pilot/Auxi-Note/releases/latest/download/latest.json"
       ]
     }
   }

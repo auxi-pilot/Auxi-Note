@@ -21,7 +21,7 @@ export const SidebarHeader = ({
       <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center flex-shrink-0">
         <span className="text-sm font-medium text-primary">A</span>
       </div>
-      {!isCollapsed && <span className="font-medium">Auxi Note</span>}
+      {!isCollapsed && <span className="font-medium">Auxi-Note</span>}
     </Link>
     <Button
       variant="ghost"

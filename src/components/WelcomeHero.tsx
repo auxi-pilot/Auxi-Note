@@ -2,7 +2,7 @@ import { Plus, Database, Sparkles, FileText } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { createNewNote } from "@/models/notes";
-import { Badge } from "./ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 const WelcomeHero = () => {
   const navigate = useNavigate();
@@ -38,10 +38,7 @@ const WelcomeHero = () => {
           <p className="text-sm text-muted-foreground text-center">
             Keep your notes synced across all your devices
           </p>
-          <Badge
-            variant="secondary"
-            className="absolute bottom-2 right-2"
-          ></Badge>
+          <p>Coming soon</p>
         </div>
 
         <div className="flex flex-col items-center p-6 space-y-4 rounded-lg border bg-card text-card-foreground">

@@ -1,10 +1,10 @@
-# Auxi Note
+# Auxi-Note
 
 ![auxi-logo.png](https://raw.githubusercontent.com/auxi-pilot/AuxiNote/refs/heads/main/auxi-logo.png)
 
-Auxi Note is a note taking app, where you can create notes using Notion style block editor.
+Auxi-Note is a note taking app, where you can create notes using Notion style block editor.
 
-Auxi Note comes with AI features, where you can summarize, proofread and change tone of some
+Auxi-Note comes with AI features, where you can summarize, proofread and change tone of some
 
 text.
 

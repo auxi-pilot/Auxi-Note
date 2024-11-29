@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, FileText, X, Trash } from "lucide-react";
+import { Search, FileText, X, Trash, Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { SidebarHeader } from "./sidebar/SidebarHeader";
@@ -24,6 +24,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useSettingsStore } from "@/store/useSettingsStore";
+import { SettingsDialog } from "./settings/SettingsDialog";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -33,6 +35,7 @@ const Sidebar = () => {
   const { noteId } = useParams();
   const notes = useReactivity(() => listNotes());
   const pinned = useReactivity(() => pinnedNotes());
+  const { openSettingDialog } = useSettingsStore();
 
   const navItems = [
     {
@@ -41,7 +44,17 @@ const Sidebar = () => {
       onClick: () => setShowSearch(true),
     },
   ];
-  const bottomItems = [{ icon: Trash, label: "Trash", path: "/trash" }];
+  const bottomItems = [
+    {
+      icon: Settings,
+      path: "#",
+      label: "Settings",
+      onClick: () => {
+        console.log("settings");
+        openSettingDialog();
+      },
+    },
+  ];
 
   // Auto close more panel if there are no older notes
   useEffect(() => {
@@ -154,8 +167,14 @@ const Sidebar = () => {
         </nav>
 
         <div className="border-t border-border p-3 space-y-1">
-          {bottomItems.map((item) => (
-            <NavItem key={item.path} {...item} isCollapsed={isCollapsed} />
+          {bottomItems.map((item, index) => (
+            <NavItem
+              key={index}
+              icon={item.icon}
+              label={item.label}
+              onSelect={item.onClick}
+              isCollapsed={isCollapsed}
+            />
           ))}
           <ThemeToggle />
         </div>
@@ -194,6 +213,7 @@ const Sidebar = () => {
       )}
 
       <SearchDialog isOpen={showSearch} onOpenChange={setShowSearch} />
+      <SettingsDialog />
     </div>
   );
 };

@@ -15,17 +15,16 @@ import {
   useCreateBlockNote,
 } from "@blocknote/react";
 import { AIAssistantFormattingTool } from "./AiAssistantFormattingTool";
+import { useSettingsStore } from "@/store/useSettingsStore";
 
 export const CustomFormattingToolbar = () => {
+  const { aiEnabled } = useSettingsStore();
   return (
     <FormattingToolbar>
-      <AIAssistantFormattingTool />
-
+      {aiEnabled && <AIAssistantFormattingTool />}
       <BlockTypeSelect key={"blockTypeSelect"} />
-
       <FileCaptionButton key={"fileCaptionButton"} />
       <FileReplaceButton key={"replaceFileButton"} />
-
       <BasicTextStyleButton basicTextStyle={"bold"} key={"boldStyleButton"} />
       <BasicTextStyleButton
         basicTextStyle={"italic"}
@@ -41,16 +40,12 @@ export const CustomFormattingToolbar = () => {
       />
       {/* Extra button to toggle code styles */}
       <BasicTextStyleButton key={"codeStyleButton"} basicTextStyle={"code"} />
-
       <TextAlignButton textAlignment={"left"} key={"textAlignLeftButton"} />
       <TextAlignButton textAlignment={"center"} key={"textAlignCenterButton"} />
       <TextAlignButton textAlignment={"right"} key={"textAlignRightButton"} />
-
       <ColorStyleButton key={"colorStyleButton"} />
-
       <NestBlockButton key={"nestBlockButton"} />
       <UnnestBlockButton key={"unnestBlockButton"} />
-
       <CreateLinkButton key={"createLinkButton"} />
     </FormattingToolbar>
   );

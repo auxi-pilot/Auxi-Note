@@ -32,3 +32,36 @@ export const setCurrentTheme = (newTheme: string) => {
   const theme = getCurrentTheme();
   Settings.updateOne({ key: "theme" }, { $set: { value: newTheme } });
 };
+
+export const getCurrentAISettings = () => {
+  let aiEnabled = Settings.findOne({ key: "aiEnabled" });
+  let aiLMStudioApiUrl = Settings.findOne({ key: "aiLMStudioApiUrl" });
+  if (!aiEnabled) {
+    aiEnabled = Settings.insert({
+      key: "aiEnabled",
+      value: "false",
+    });
+  }
+  if (!aiLMStudioApiUrl) {
+    aiLMStudioApiUrl = Settings.insert({
+      key: "aiLMStudioApiUrl",
+      value: "http://localhost:1234/v1",
+    });
+  }
+
+  return {
+    aiEnabled: aiEnabled && aiEnabled.value === "true" ? true : false,
+    aiLMStudioApiUrl: aiLMStudioApiUrl?.value,
+  };
+};
+
+export const setAISettings = (aiEnabled: boolean, aiLMStudioApiUrl: string) => {
+  Settings.updateOne(
+    { key: "aiEnabled" },
+    { $set: { value: aiEnabled === true ? "true" : "false" } }
+  );
+  Settings.updateOne(
+    { key: "aiLMStudioApiUrl" },
+    { $set: { value: aiLMStudioApiUrl } }
+  );
+};

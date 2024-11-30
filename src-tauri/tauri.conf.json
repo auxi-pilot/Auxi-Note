@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Auxi-Note",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "identifier": "com.auxinote.app",
   "build": {
     "beforeDevCommand": "npm run dev",
@@ -20,7 +20,8 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": null,
+      "capabilities": ["main-capability"]
     }
   },
   "bundle": {
@@ -37,6 +38,7 @@
   },
   "plugins": {
     "updater": {
+      "active": true,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEEyQzZDMDhGQ0Q0NTgyMDAKUldRQWdrWE5qOERHb3EzaEdoOGsvME56N1Jna1JQVzQyVTBHRjUrOFpkNWk2L0ZnRUFLQjRoQ0QK",
       "endpoints": [
         "https://github.com/auxi-pilot/Auxi-Note/releases/latest/download/latest.json"

@@ -64,7 +64,6 @@ export const togglePinNote = (noteId: string, makeItPinned: boolean) => {
 
 export const updateNote = (noteId: string, jsonBlocks: Block[]) => {
   const content = JSON.stringify(jsonBlocks);
-  console.log(jsonBlocks[0]?.content);
   //@ts-ignore
   const title = jsonBlocks[0]?.content?.[0]?.text || "Untitled";
   const note = Notes.updateOne(

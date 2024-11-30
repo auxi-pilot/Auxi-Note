@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/accordion";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { SettingsDialog } from "./settings/SettingsDialog";
+import { UpdateDialog } from "./UpdateDialog";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -50,7 +51,6 @@ const Sidebar = () => {
       path: "#",
       label: "Settings",
       onClick: () => {
-        console.log("settings");
         openSettingDialog();
       },
     },
@@ -215,6 +215,7 @@ const Sidebar = () => {
 
       <SearchDialog isOpen={showSearch} onOpenChange={setShowSearch} />
       <SettingsDialog />
+      <UpdateDialog />
     </div>
   );
 };

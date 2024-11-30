@@ -25,7 +25,6 @@ export const NotesList = ({
   totalNotes = notes.length,
   showCreateNoteButton = false,
 }: NotesListProps) => {
-  console.log(showCreateNoteButton);
   return (
     <div className="mt-1 space-y-1">
       {notes.map((note) => (

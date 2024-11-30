@@ -5,25 +5,29 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
+import { appUpdateCheck } from "./hooks/useAppSetup";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Index />} />
-            <Route path="note/:noteId" element={<Index />} />
-            <Route path="*" element={<Index />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      <Toaster />
-      <Sonner />
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  appUpdateCheck();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Index />} />
+              <Route path="note/:noteId" element={<Index />} />
+              <Route path="*" element={<Index />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+        <Toaster />
+        <Sonner />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
